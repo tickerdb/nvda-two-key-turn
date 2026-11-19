@@ -1,0 +1,31 @@
+side,entry_date,entry_price,exit_date,exit_price,reason
+long,2019-07-05,160.4,2021-03-05,502.0,trend down and rates rising
+short,2021-03-05,502.0,2021-03-08,498.0,trend down but rates not rising
+long,2021-03-08,498.0,2021-03-09,485.2,trend down and rates rising
+short,2021-03-09,485.2,2021-03-12,506.0,trend down but rates not rising
+long,2021-03-12,506.0,2021-03-16,534.4,trend down and rates rising
+short,2021-03-16,534.4,2021-03-18,525.6,trend down but rates not rising
+long,2021-03-18,525.6,2021-03-19,510.0,trend down and rates rising
+short,2021-03-19,510.0,2021-03-26,502.0,trend down but rates not rising
+long,2021-03-26,502.0,2021-03-30,513.6,trend down and rates rising
+short,2021-03-30,513.6,2021-03-31,520.8,"trend up, rates rising"
+long,2021-03-31,520.8,2021-04-01,542.8,trend down and rates rising
+short,2021-04-01,542.8,2021-04-08,570.0,"trend up, rates rising"
+long,2021-04-08,142.5,2022-04-04,267.3,trend down and rates rising
+short,2022-04-04,267.3,2022-11-23,161.0,"trend up, rates rising"
+long,2022-11-23,161.0,2022-12-13,185.3,trend down and rates rising
+short,2022-12-13,185.3,2022-12-15,171.5,"trend up, rates rising"
+long,2022-12-15,171.5,2022-12-20,160.6,trend down and rates rising
+short,2022-12-20,160.6,2023-01-23,180.6,"trend up, rates rising"
+long,2023-01-23,180.6,2023-12-11,474.9,trend down and rates rising
+short,2023-12-11,474.9,2023-12-12,460.5,"trend up, rates rising"
+long,2023-12-12,46.05,2025-03-05,117.58,trend down and rates rising
+short,2025-03-05,117.58,2025-04-09,98.89,trend down but rates not rising
+long,2025-04-09,98.89,2026-03-10,182.4,trend down and rates rising
+short,2026-03-10,182.4,2026-03-13,184.92,"trend up, rates rising"
+long,2026-03-13,184.92,2026-03-19,178.01,trend down and rates rising
+short,2026-03-19,178.01,2026-04-16,197.43,"trend up, rates rising"
+long,2026-04-16,197.43,2026-10-26,213.105,trend down and rates rising
+short,2026-10-26,213.105,2026-10-30,208.94,"trend up, rates rising"
+long,2026-10-30,208.94,2026-11-05,196.07,trend down and rates rising
+short,2026-11-05,196.07,,,open

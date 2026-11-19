@@ -1,0 +1,30 @@
+side,entry_date,entry_price,exit_date,exit_price,return_pct,days_held,exit_reason
+long,2019-07-05,160.4,2021-03-05,502,212.939864,609,trend down and rates rising
+short,2021-03-05,502,2021-03-08,498,0.596912,3,trend down but rates not rising
+long,2021-03-08,498,2021-03-09,485.2,-2.732947,1,trend down and rates rising
+short,2021-03-09,485.2,2021-03-12,506,-4.486788,3,trend down but rates not rising
+long,2021-03-12,506,2021-03-16,534.4,5.401529,4,trend down and rates rising
+short,2021-03-16,534.4,2021-03-18,525.6,1.446805,2,trend down but rates not rising
+long,2021-03-18,525.6,2021-03-19,510,-3.162003,1,trend down and rates rising
+short,2021-03-19,510,2021-03-26,502,1.368726,7,trend down but rates not rising
+long,2021-03-26,502,2021-03-30,513.6,2.106238,4,trend down and rates rising
+short,2021-03-30,513.6,2021-03-31,520.8,-1.601768,1,"trend up, rates rising"
+long,2021-03-31,520.8,2021-04-01,542.8,4.015926,1,trend down and rates rising
+short,2021-04-01,542.8,2021-04-08,570,-5.210949,7,"trend up, rates rising"
+long,2021-04-08,142.5,2022-04-04,267.3,87.316145,361,trend down and rates rising
+short,2022-04-04,267.3,2022-11-23,161,39.538212,233,"trend up, rates rising"
+long,2022-11-23,161,2022-12-13,185.3,14.887916,20,trend down and rates rising
+short,2022-12-13,185.3,2022-12-15,171.5,7.247475,2,"trend up, rates rising"
+long,2022-12-15,171.5,2022-12-20,160.6,-6.54288,5,trend down and rates rising
+short,2022-12-20,160.6,2023-01-23,180.6,-12.653188,34,"trend up, rates rising"
+long,2023-01-23,180.6,2023-12-11,474.9,162.519665,322,trend down and rates rising
+short,2023-12-11,474.9,2023-12-12,460.5,2.832314,1,"trend up, rates rising"
+long,2023-12-12,46.05,2025-03-05,117.58,154.894514,449,trend down and rates rising
+short,2025-03-05,117.58,2025-04-09,98.89,15.687148,35,trend down but rates not rising
+long,2025-04-09,98.89,2026-03-10,182.4,84.108962,335,trend down and rates rising
+short,2026-03-10,182.4,2026-03-13,184.92,-1.586955,3,"trend up, rates rising"
+long,2026-03-13,184.92,2026-03-19,178.01,-3.929181,6,trend down and rates rising
+short,2026-03-19,178.01,2026-04-16,197.43,-11.109389,28,"trend up, rates rising"
+long,2026-04-16,197.43,2026-10-26,213.105,7.976753,193,trend down and rates rising
+short,2026-10-26,213.105,2026-10-30,208.94,1.754534,4,"trend up, rates rising"
+long,2026-10-30,208.94,2026-11-05,196.07,-6.34725,6,trend down and rates rising
