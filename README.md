@@ -86,7 +86,7 @@ The backtest starts on Jul 3, 2019 and ends on Nov 18, 2026, so 2019 and 2026 ar
   <img src="assets/trades.svg" alt="The 12 most recent trades: entry, exit and return" width="100%">
 </p>
 
-The 12 most recent; all 29 are in [`results/trades.csv`](results/trades.csv). A trade is one long or one short in NVDA, from the open it was opened to the open it was closed; its return is after the 0.1% cost each way. NVDA Two Key Turn closed 29 trades: 62% won, and the average trade returned +26%.
+The 12 most recent; all 29 closed trades are in [`results/trades.csv`](results/trades.csv); the short opened on Nov 5, 2026 (+23% at the last close) was still open when the backtest ended. A trade is one long or one short in NVDA, from the open it was opened to the open it was closed; its return is after the 0.1% cost each way. NVDA Two Key Turn closed 29 trades: 62% won, and the average trade returned +26%.
 
 ## Rules
 

@@ -12,7 +12,7 @@
   "backtest_end": "2026-11-18",
   "activated_on": "2026-11-19",
   "as_of": null,
-  "updated_at": "2026-11-19T18:51:22.960102+00:00"
+  "updated_at": "2026-11-19T19:09:30.806481+00:00"
  },
  "data": null,
  "backtest": {
@@ -15363,6 +15363,17 @@
    {
     "ticker": "NVDA",
     "trades_count": 29
+   }
+  ],
+  "open": [
+   {
+    "ticker": "NVDA",
+    "side": "short",
+    "entry_date": "2026-11-05",
+    "entry_price": 196.07,
+    "price": 150.96,
+    "return_pct": 22.807166,
+    "days_held": 13
    }
   ]
  },

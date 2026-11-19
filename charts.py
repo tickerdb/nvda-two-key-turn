@@ -315,7 +315,8 @@ def edge(model: list[tuple[str, float]], bench: list[tuple[str, float]], m: dict
 
 def tape(trades: list[dict], path: Path, rows: int = 12, this_year: int | None = None) -> None:
     """The model page's trade tape, newest first: triangle and entry date, exit, ROI (the triangle shows the side).
-    Long is white and short purple; gains are white, losses dim purple; an open trade is marked live."""
+    Long is white and short purple; gains are white, losses dim purple; a trade still open at the backtest's
+    end reads "open" where its exit would be, with its return at that day's close."""
     this_year = this_year or date.today().year     # dates of this year print without it
 
     def fmt(iso: str | None) -> str:
@@ -345,11 +346,11 @@ def tape(trades: list[dict], path: Path, rows: int = 12, this_year: int | None =
         r = t["return_pct"]
         if live:
             out.append(f'<rect x="1" y="{cy - 22}" width="{W - 2}" height="{RH}" fill="{BENCH}" fill-opacity="0.10"/>')
-        ret = "" if r is None else _pct(float(r)) + (" live" if live else "")
+        ret = "" if r is None else _pct(float(r))
         tone = f'fill="{UP}" font-weight="600"' if (r or 0) >= 0 else f'fill="{DOWN}"'
         out.append(f'<path d="{tri}" fill="{sc}"/>'
                    f'<text x="{c0 + 22}" y="{cy}" fill="{MUTED}">{fmt(t["entry_date"])}</text>'
-                   f'<text x="{c1}" y="{cy}" fill="{INK}">{fmt(t["exit_date"])}</text>'
+                   f'<text x="{c1}" y="{cy}" fill="{MUTED if live else INK}">{"open" if live else fmt(t["exit_date"])}</text>'
                    f'<text x="{c2}" y="{cy}" {tone}>{ret}</text>')
     out += ["</g>", "</svg>"]
     path.write_text(chr(10).join(out), encoding="utf-8")

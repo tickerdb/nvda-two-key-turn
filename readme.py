@@ -91,7 +91,25 @@ def figures(record: dict) -> dict:
         "years": s["years"], "trades": trades, "trades_count": len(returns), "win_rate": wins / len(returns) * 100,
         "avg_trade": sum(returns) / len(returns),
         "longs": sum(t["side"] == "long" for t in trades), "shorts": sum(t["side"] == "short" for t in trades),
+        "open": open_trades(record),
     }
+
+
+def open_trades(record: dict) -> list[dict]:
+    """The trades still open at the backtest's end, oldest entry first, in a closed trade's shape with no
+    exit: return_pct is the return at that day's close, as the page's trade log shows it."""
+    held = sorted(record["backtest"].get("open") or [], key=lambda t: t["entry_date"])
+    return [{"side": t["side"], "entry_date": t["entry_date"], "entry_price": t["entry_price"], "exit_date": None,
+             "exit_price": None, "return_pct": t["return_pct"], "days_held": t["days_held"]} for t in held]
+
+
+def open_note(f: dict) -> str:
+    """What the Trades section says about the trades still open at the backtest's end."""
+    if not f["open"]:
+        return ""
+    said = [f"the {t['side']} opened on {fmt.long_date(t['entry_date'])} ({fmt.signed_pct(t['return_pct'])} at the last close)"
+            for t in f["open"]]
+    return f"; {' and '.join(said)} {'was' if len(said) == 1 else 'were'} still open when the backtest ended"
 
 
 def summaries(f: dict) -> dict:
@@ -218,10 +236,10 @@ The backtest starts on {day(f['start'])} and ends on {day(f['end'])}, so {f['sta
 ## Trades
 
 <p align="center">
-  <img src="assets/trades.svg" alt="The {min(TAPE_ROWS, f['trades_count'])} most recent trades: entry, exit and return" width="100%">
+  <img src="assets/trades.svg" alt="The {min(TAPE_ROWS, f['trades_count'] + len(f['open']))} most recent trades: entry, exit and return" width="100%">
 </p>
 
-The {min(TAPE_ROWS, f['trades_count'])} most recent; all {f['trades_count']} are in [`results/trades.csv`](results/trades.csv). A trade is one long or one short in NVDA, from the open it was opened to the open it was closed; its return is after the 0.1% cost each way. {say['trades']}
+The {min(TAPE_ROWS, f['trades_count'] + len(f['open']))} most recent; all {f['trades_count']} closed trades are in [`results/trades.csv`](results/trades.csv){open_note(f)}. A trade is one long or one short in NVDA, from the open it was opened to the open it was closed; its return is after the 0.1% cost each way. {say['trades']}
 
 ## Rules
 
@@ -284,7 +302,7 @@ def trades_csv(record: dict) -> str:
     out = io.StringIO(newline="")
     w = csv.writer(out, lineterminator="\n")
     w.writerow(TRADE_COLUMNS)
-    for t in record["backtest"]["trades"]:
+    for t in record["backtest"]["trades"] + open_trades(record):
         w.writerow(["" if t.get(k) is None else t.get(k) for k in TRADE_COLUMNS])
     return out.getvalue()
 
@@ -312,7 +330,7 @@ def draw(record: dict, folder: Path) -> None:
     charts.edge(model, bench, m, b, folder / "edge.svg")
     charts.years({str(y["year"]): y["model_pct"] / 100 for y in f["years"]},
                  {str(y["year"]): y["benchmark_pct"] / 100 for y in f["years"]}, folder / "years.svg")
-    charts.tape(f["trades"], folder / "trades.svg", TAPE_ROWS, this_year=int(f["end"][:4]))
+    charts.tape(f["trades"] + f["open"], folder / "trades.svg", TAPE_ROWS, this_year=int(f["end"][:4]))
 
 
 def outputs(record: dict, folder: Path) -> dict[Path, str]:
@@ -339,8 +357,14 @@ def replay_differences(record: dict) -> list[str]:
     with REPLAY.open(newline="") as fh:
         replay = trade_keys(csv.DictReader(fh))
     published = trade_keys(record["backtest"]["trades"])
-    if replay == published:
+    with REPLAY.open(newline="") as fh:
+        still_open = sorted((r["side"], r["entry_date"], fmt.to_fixed(float(r["entry_price"]), 2))
+                            for r in csv.DictReader(fh) if not r.get("exit_date"))
+    record_open = sorted((t["side"], t["entry_date"], fmt.to_fixed(float(t["entry_price"]), 2)) for t in open_trades(record))
+    if replay == published and still_open == record_open:
         return []
+    if replay == published:
+        return [f"the trade open at the backtest's end differs: the replay has {still_open}, the record {record_open}"]
     only_r = sorted(set(replay) - set(published))[:5]
     only_p = sorted(set(published) - set(replay))[:5]
     return [f"replayed trades differ from the record: {len(replay)} vs {len(published)}; "
