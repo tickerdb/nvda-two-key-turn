@@ -11,10 +11,40 @@
   "backtest_start": "2019-07-03",
   "backtest_end": "2026-11-18",
   "activated_on": "2026-11-19",
-  "as_of": null,
-  "updated_at": "2026-11-19T19:09:30.806481+00:00"
+  "as_of": "2026-11-19",
+  "updated_at": "2026-11-20T08:00:41.775698+00:00"
  },
- "data": null,
+ "data": {
+  "as_of": "2026-11-19",
+  "tiles": {
+   "return_pct": 2.064848,
+   "benchmark_return_pct": -3.298887,
+   "max_drawdown_pct": 0,
+   "closed_trades": 0,
+   "win_rate_pct": null
+  },
+  "equity": [
+   [
+    "2026-11-18",
+    1
+   ],
+   [
+    "2026-11-19",
+    1.020648
+   ]
+  ],
+  "benchmark_equity": [
+   [
+    "2026-11-18",
+    1
+   ],
+   [
+    "2026-11-19",
+    0.967011
+   ]
+  ],
+  "trades": []
+ },
  "backtest": {
   "start": "2019-07-03",
   "end": "2026-11-18",

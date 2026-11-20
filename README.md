@@ -126,6 +126,8 @@ python -m unittest discover -s tests   # offline tests of the rules and the reco
 
 The replay needs a TickerDB plan with daily history back to 2019 (Pro). No dependencies beyond Python 3.10+.
 
+The first `python run.py` starts from what the model holds now: it reads the model's newest book (`/v1/models/nvda-two-key-turn/holdings`, on every plan, 1 credit), prints each position's side, entry date and price, and keeps it in `state.json`. Later runs carry it on from there.
+
 Point in time: each decision uses only data up to that day's close, and the order fills at the next session's open. The trend key is TickerDB's `trend_ma100_slope_pct` (the 100-day average's change over five sessions) and the rates key its `macro_treasury_yield_2y_pct`. A long or a short takes the whole balance at the open it fills, 1x; the cash held against a short earns nothing. Trade prices are as traded on the day: NVDA split 4-for-1 in 2021 and 10-for-1 in 2024, so older fills are at pre-split prices.
 
 ## Caveats
